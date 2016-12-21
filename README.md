@@ -1,24 +1,34 @@
-# README
+Things to get done:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+-Make models for user, games (will hold tags), events/scores
+    -Have a basic page for each user (just show their name) and use this to test sessions and authentications
 
-Things you may want to cover:
+-For the models, have their forms (create, edit, delete) and display pages made
+    -start with a player page
+    
+-Fix up results display data and have the 
 
-* Ruby version
+-An "about" page for showing how this works (leave this for the end?)
 
-* System dependencies
+Important commands
 
-* Configuration
+-starting local database
 
-* Database creation
+sudo service postgresql start
+psql -c "create database scoreViewer_test owner=ubuntu"
+rake db:migrate
+psql -c "create database scoreViewer_development owner=ubuntu"
+rake db:migrate RAILS_ENV=test
+rake test:models
 
-* Database initialization
 
-* How to run the test suite
+-Making new things
 
-* Services (job queues, cache servers, search engines, etc.)
+rails genereate resource <name> <var1>:<var1type> etc
 
-* Deployment instructions
+-running it
+rails server -b $IP -p $PORT
 
-* ...
+USERS:
+Name string
+password string
