@@ -1,0 +1,18 @@
+<%= form_for @player, url: {action: "create"} do |f| %>
+      <%= f.label :name, "Player name: "%>
+      <%= f.text_field :name%>
+      </br>
+      <%= f.label :password, "Password: "%>
+      <%= f.password_field :password%>
+      </br>
+      <%= f.label :password_confirmation, 'Confirm Password:'%>
+      <%= f.password_field :password_confirmation%>
+      </br>
+      <%= f.radio_button :admin, false %>
+      <%= f.label :admin, "Regular user" %>
+      </br>
+      <%= f.radio_button :admin, true %>
+      <%= f.label :admin, "Admin user" %>
+      </br>
+      <%= f.submit "Log In"%>
+<% end %>

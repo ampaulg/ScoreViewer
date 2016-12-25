@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Score Viewer - List of Players</title>
+    </head>
+    <body>
+        <h1>Players#index</h1>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Games</td>
+            </tr>
+            <% @players.each do |p| %>
+                <td><%= p.name %></td>
+                <!-- have games span 5 rows (or however many games there are) -->
+            <% end %>
+        </table>
+    </body>
+</html>
