@@ -8,11 +8,15 @@
         <table>
             <tr>
                 <td>Name</td>
-                <td>Games</td>
+                <td>Id</td>
+                <td>Delete button</td>
             </tr>
             <% @players.each do |p| %>
+                <tr>
                 <td><%= p.name %></td>
-                <!-- have games span 5 rows (or however many games there are) -->
+                <td><%= p.id %></td>
+                <td><%= link_to 'Delet this', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
             <% end %>
         </table>
     </body>

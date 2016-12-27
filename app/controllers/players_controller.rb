@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-    skip_before_action :login_required, :only => [:new]
+    skip_before_action :login_required, :only => [:new, :create]
     
     def new
        @player = Player.new 
@@ -7,6 +7,10 @@ class PlayersController < ApplicationController
     
     def show
         @player = Player.find(params[:id])
+    end
+    
+    def index
+  	    @players = Player.all
     end
     
     def create
@@ -31,8 +35,12 @@ class PlayersController < ApplicationController
     #### Add an admin check for this
     ####
     def destroy
-        @player = player.find(params[:id])
-        if params[:id] == session[:player_id]
+        #if !session[:admin]
+        #    redirect_to players_url, notice: 'Only admins can do that.'
+        #end
+        @player = Player.find(params[:id])
+        #if params[:id] == session[:player_id]
+        if @player.id == session[:player_id]
             redirect_to players_url, notice: 'You cannot delete your own profile.'
         else
             @player.destroy

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     before_action :login_required
-    helper_method :logged_in?, :current_user
+    helper_method :logged_in?, :current_player
 
     def login_required
         if !logged_in?
@@ -10,13 +10,13 @@ class ApplicationController < ActionController::Base
     end
     
     def logged_in?
-        !!current_user
+        !!session[:player_id]
     end
   
     def current_user
-        if session[:user_id]
-            @current_user =  User.find(session[:user_id])
-            @current_user
+        if session[:player_id]
+            @current_player =  User.find(session[:player_id])
+            @current_player
         else
             false
         end
