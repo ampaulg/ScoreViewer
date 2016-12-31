@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     @player = Player.find_by_name(params[:session][:name])
     if @player && @player.authenticate(params[:session][:password])
       login(@player)
-      #session[:player_id] = @player.id
       redirect_to @player, :notice => "Hello, #{@player.name}"
     else
       if !@player

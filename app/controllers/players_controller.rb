@@ -10,10 +10,19 @@ class PlayersController < ApplicationController
     end
     
     def index
+        if !session[:admin]
+            redirect_to player_path(:id => session[:player_id]), notice: 'Only admins can go there.'
+        end
   	    @players = Player.all
     end
     
     def create
+        
+        if player_params[:password] != player_params[:password_confirmation]
+            flash[:notice] = "Password and confirmation do not match!"
+            redirect_to new_player_path 
+        end
+        
         @player = Player.new(player_params)
         if @player.save
   		    flash[:notice] = "Signup successful"
@@ -35,9 +44,9 @@ class PlayersController < ApplicationController
     #### Add an admin check for this
     ####
     def destroy
-        #if !session[:admin]
-        #    redirect_to players_url, notice: 'Only admins can do that.'
-        #end
+        if !session[:admin]
+            redirect_to players_url, notice: 'Only admins can do that.'
+        end
         @player = Player.find(params[:id])
         #if params[:id] == session[:player_id]
         if @player.id == session[:player_id]
