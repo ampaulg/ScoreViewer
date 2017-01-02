@@ -32,6 +32,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+#Use capybara for some tests
+gem 'capybara', '~> 2.7', '>= 2.7.1'
+
+#For testing
+gem 'rails-controller-testing'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

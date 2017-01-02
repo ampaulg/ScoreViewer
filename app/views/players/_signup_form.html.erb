@@ -1,4 +1,16 @@
 <%= form_for @player, url: {action: "create"} do |f| %>
+
+<% if @player.errors.any? %>
+
+  <p>The following errors occurred:</p>
+
+    <% @player.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+    <br>
+<% end %>
+
+
       <%= f.label :name, "Player name: "%>
       <%= f.text_field :name%>
       </br>

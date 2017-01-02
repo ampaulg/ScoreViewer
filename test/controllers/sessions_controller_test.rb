@@ -7,9 +7,9 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "create: should sign in with correct credentials" do
+  test "create: should sign in as the correct user with correct credentials" do
     player_to_log_in = players(:one)
-    post login_url, params: { session: { name: "testerAdmin", password: "password1" } }
+    login(1)
     assert_not_nil session[:player_id]
     assert_equal player_to_log_in.id, session[:player_id]
   end
@@ -17,12 +17,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "create: should not sign in with incorrect credentials" do
     post login_url, params: { session: { name: "totallyFakeName", password: "NotRightEither" } }
     assert_nil session[:player_id]
-  end
-  
-  test "create: should sign in as the correct user" do
-    player_to_log_in = players(:one)
-    post login_url, params: { session: { name: "testerAdmin", password: "password1" } }
-    assert_equal player_to_log_in.id, session[:player_id]
   end
 
   test "logs out session" do

@@ -3,12 +3,14 @@
 one:
   id: 1
   name: testerAdmin
-  password_digest: <%= BCrypt::Password.create('password1', cost: 4) %>
+  #password_digest: <%= BCrypt::Password.create('password1', cost: 4) %>
+  password_digest: <%= default_password_digest %>
   admin: true
 
 two:
   id: 2
   name: testerRegular
-  password_digest: <%= BCrypt::Password.create('password2', cost: 4) %>
+  #password_digest: <%= BCrypt::Password.create('password2', cost: 4) %>
+  password_digest: <%= default_password_digest %>
   admin: false
   

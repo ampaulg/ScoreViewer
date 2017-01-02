@@ -6,7 +6,11 @@ class PlayersController < ApplicationController
     end
     
     def show
-        @player = Player.find(params[:id])
+        if Player.exists?(params[:id])
+            @player = Player.find(params[:id])
+        else
+            redirect_to player_path(:id => session[:player_id]), notice: 'There is no player with ID' + params[:id].to_s
+        end
     end
     
     def index
@@ -18,12 +22,15 @@ class PlayersController < ApplicationController
     
     def create
         
+        @player = Player.new(player_params)
+        
         if player_params[:password] != player_params[:password_confirmation]
-            flash[:notice] = "Password and confirmation do not match!"
-            redirect_to new_player_path 
+            #flash[:notice] = "Password and confirmation do not match!"
+            @player.errors.add(:password, "Password and confirmation do not match!")
+            #render :new
+            #return
         end
         
-        @player = Player.new(player_params)
         if @player.save
   		    flash[:notice] = "Signup successful"
   		    params[:player] = {:id=> @player.id}
@@ -37,6 +44,7 @@ class PlayersController < ApplicationController
   	    else
   		    flash[:notice] = "Error with your signup"
   		    render :new
+  		    #redirect_to new_player_path 
         end
     end
     
@@ -45,7 +53,12 @@ class PlayersController < ApplicationController
     ####
     def destroy
         if !session[:admin]
-            redirect_to players_url, notice: 'Only admins can do that.'
+            redirect_to player_path(:id => session[:player_id]), notice: 'Only admins can do that.'
+            return
+        end
+        if !Player.exists?(params[:id])
+            redirect_to players_url, notice: 'There is no player with that ID'
+            return
         end
         @player = Player.find(params[:id])
         #if params[:id] == session[:player_id]

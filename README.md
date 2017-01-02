@@ -1,5 +1,11 @@
 Things to get done:
 
+
+Current to do list:
+    -player editing
+    -player controller tests
+
+
 -Make models for user, games (will hold tags), events/scores
     -Have a basic page for each user (just show their name) and use this to test sessions and authentications
 
