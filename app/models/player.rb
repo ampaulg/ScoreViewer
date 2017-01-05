@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
     has_secure_password
+    has_many :games
 
     validates :name, 
         :presence => {:message => " was not entered" },

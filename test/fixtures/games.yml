@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  player: one
+  tag1: 
+  tag2: 
+  tag3: 
+  tag4:
+  tag5: 
+
+two:
+  name: MyString
+  player: two
+  tag1: 
+  tag2: 
+  tag3: 
+  tag4:
+  tag5: 

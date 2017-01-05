@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225010802) do
+ActiveRecord::Schema.define(version: 20170104035626) do
+
+  create_table "games", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "player_id"
+    t.string   "tag1"
+    t.string   "tag2"
+    t.string   "tag3"
+    t.string   "tag4"
+    t.string   "tag5"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_games_on_player_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
